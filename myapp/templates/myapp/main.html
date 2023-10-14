@@ -1,0 +1,56 @@
+<html>
+    <head><title>mywebpage</title></head>
+    <body>
+        <div class="main-container">
+            {% for user in users %}
+            <div class="contleft">
+                <h5>resume : {{user.CV}}</h5>
+                <h5>role : {{user.job}}</h5> 
+                <h5>name : {{user.name}}</h5>
+                <h5>age : {{user.age}}</h5>
+                <h5>date of birth : {{user.dateOfBirth}}</h5>               
+            </div>
+            <div class="contright">
+                <img class="profilepic" src="{{user.profilePicture.url }}" alt="img" width="100" height="100">
+                <h5>score on leetcode : {{user.scoreOnLeet}}</h5>
+                <h5>email : {{user.email}}</h5>
+                <h5>facebook link : {{user.FBLink}}</h5>                
+            </div>
+  
+            {% endfor %}            
+        </div>
+
+    </body>
+    <style>
+        body{
+            background-color: rgb(223, 220, 220);
+        }
+        .main-container {
+            width:50%;
+            height:350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid grey;
+            background-color:white;
+            border-radius: 10px;
+            position: absolute;
+            top: 10%;
+            left: 25%;
+        }
+        .contleft, .contright{
+            
+            width:25%;
+            height:200px;
+        }
+        .contleft{
+            padding-top: 100px;
+        }
+        .profilepic{
+            border-radius: 50px;
+        }
+
+
+    </style>
+
+</html>
