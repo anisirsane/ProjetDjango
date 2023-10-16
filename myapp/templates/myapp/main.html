@@ -1,56 +1,80 @@
 <html>
-    <head><title>mywebpage</title></head>
-    <body>
-        <div class="main-container">
-            {% for user in users %}
-            <div class="contleft">
-                <h5>resume : {{user.CV}}</h5>
-                <h5>role : {{user.job}}</h5> 
-                <h5>name : {{user.name}}</h5>
-                <h5>age : {{user.age}}</h5>
-                <h5>date of birth : {{user.dateOfBirth}}</h5>               
-            </div>
-            <div class="contright">
-                <img class="profilepic" src="{{user.profilePicture.url }}" alt="img" width="100" height="100">
-                <h5>score on leetcode : {{user.scoreOnLeet}}</h5>
-                <h5>email : {{user.email}}</h5>
-                <h5>facebook link : {{user.FBLink}}</h5>                
-            </div>
-  
-            {% endfor %}            
+    <head><title>mywebpage</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    <body>
+     </head>  
+      <!--navbar de source du docemntation officelle du bootstrap-->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Notre page web</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">login</a>
+              </li>
+            </ul>
+          </div>
         </div>
-
+      </nav>
+        {% block content %}
+        <!--une partie de ce code est reutilise depuis le dernier projet-->
+            <h2 class="ourtitle">Our sellers</h2>
+            <div class="main-container">
+                {% for seller in sellers %}
+                <div class="card" >
+                    <img src="{{seller.profilePicture.url }}" class="card-img-top" alt="profile pic" >
+                    <div class="card-body">
+                      <h5 class="card-title">{{seller.name}}</h5>
+                      <h6 class="card-title">shopify store: {{seller.shopifyLink}}</h6>
+                      <p class="card-text">email : {{seller.email}} and birthday : {{seller.dateOfBirth}}</p>
+                      <a href="{% url 'seller_detail' seller.id %}" class="btn btn-primary">see products</a>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+        {% endblock %}
     </body>
     <style>
         body{
-            background-color: rgb(223, 220, 220);
+            background-color:#18191a;
+        }
+
+        .ourtitle{
+            color:white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .main-container {
-            width:50%;
+
+            width:90%;
             height:350px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid grey;
-            background-color:white;
-            border-radius: 10px;
-            position: absolute;
-            top: 10%;
-            left: 25%;
-        }
-        .contleft, .contright{
-            
-            width:25%;
-            height:200px;
-        }
-        .contleft{
-            padding-top: 100px;
+             position: absolute;
+            top: 30%;
+            left: 5%;
         }
         .profilepic{
             border-radius: 50px;
         }
+        .card{
+            color: white;
+            background-color:#242526 ;
+            width: 18rem; 
+            margin: 10px;
+        }
+
 
 
     </style>
 
 </html>
+<!--sources utilises: https://www.youtube.com/watch?v=7a23TbUXfWE&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO&index=8
+https://www.youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO-->
